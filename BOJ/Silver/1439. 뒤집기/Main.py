@@ -1,18 +1,20 @@
-s = input().strip()
+input = input()
+def find_count_to_turn_out_to_all_zero_or_all_one(string):
+    count_to_all_zero = 0
+    count_to_all_one = 0
+    if string[0] == '0':
+        count_to_all_one += 1
+    elif string[0] =='1':
+        count_to_all_zero += 1
 
-count0 = 0
-count1 = 0
+    for i in range(len(input) - 1):
+        if string[i] != string[i + 1]:
+            if string[i + 1] == "1":
+                count_to_all_zero += 1
+            if string[i + 1] == "0":
+                count_to_all_one += 1
+            
+    return min(count_to_all_zero,count_to_all_one)
 
-if s[0] == '0':
-    count0 += 1
-else:
-    count1 += 1
-
-for i in range(1, len(s)):
-    if s[i] != s[i-1]:
-        if s[i] == '0':
-            count0 += 1
-        else:
-            count1 += 1
-
-print(min(count0, count1))
+result = find_count_to_turn_out_to_all_zero_or_all_one(input)
+print(result)
