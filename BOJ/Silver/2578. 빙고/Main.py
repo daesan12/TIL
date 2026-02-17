@@ -22,13 +22,10 @@ def is_binggo():
         if binggo >= 3:
             return True
         
-    #왼쪽아래시작 대각선
-    eorkr = 0
-    for i in range(4,-1,-1):
-        
-        if arr[i][eorkr] != 0:
+    #오른쪽위시작 대각선
+    for i in range(5):
+        if arr[i][4-i] != 0:
             break
-        eorkr += 1
     else:
         binggo += 1
         if binggo >= 3:
