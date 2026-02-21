@@ -7,6 +7,7 @@ for i in str:
     else:
         if len(s) == 0:
             result = "No"
+            break
         s.pop()
     if s:
         result = "No"
