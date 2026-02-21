@@ -11,6 +11,5 @@ for i in str:
         s.pop()
     if s:
         result = "No"
-if len(s) == 0:
-    result = "Yes"
+
 print(result)
