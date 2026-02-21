@@ -9,7 +9,7 @@ for i in str:
             result = "No"
             break
         s.pop()
-    if s:
-        result = "No"
+if s:
+    result = "No"
 
 print(result)
