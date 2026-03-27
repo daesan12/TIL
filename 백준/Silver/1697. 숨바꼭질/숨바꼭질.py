@@ -1,22 +1,32 @@
 from collections import deque
+def bfs(N):
+    global answer
+    global K
+    q = deque()
+    q.append((N,0))
 
-N, K = map(int, input().split())
+    
+    while q:
+        start,count = q.popleft()
+        
 
-MAX = 100001
-visited = [False] * MAX
+        if start == K:
+            return count
+        
+        if 0<=start-1<100001 and visited[start-1]== False:
+            q.append((start-1,count +1))
+            visited[start-1] =True
 
-q = deque()
-q.append((N, 0))  # 위치, 시간
-visited[N] = True
+        if 0<=start+1<100001 and visited[start+1]== False:
+            q.append((start+1,count +1))
+            visited[start+1] =True
 
-while q:
-    x, t = q.popleft()
+        if  0<=start*2<100001 and visited[start*2]== False:
+            q.append((start*2,count +1))
+            visited[start*2] =True
 
-    if x == K:
-        print(t)
-        break
-
-    for nx in (x-1, x+1, x*2):
-        if 0 <= nx < MAX and not visited[nx]:
-            visited[nx] = True
-            q.append((nx, t+1))
+N,K = map(int, input().split())
+answer = float('inf')
+visited = [False]* 100001
+answer = bfs(N)
+print(answer)
