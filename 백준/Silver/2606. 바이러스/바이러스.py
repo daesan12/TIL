@@ -1,27 +1,34 @@
-import sys
-input = sys.stdin.readline
+from collections import deque
 
-N = int(input())   # 컴퓨터 수
-M = int(input())   # 연결된 쌍 수
+def bfs():
+    global ans
+    d = deque()
+    d.append(1)
 
-graph = [[] for _ in range(N + 1)]
+    while d:
 
-for _ in range(M):
-    a, b = map(int, input().split())
-    graph[a].append(b)
-    graph[b].append(a)
+        idx = d.popleft()
+        for i in node[idx]:
+            if visited[i] == 1:
+                continue
 
-visited = [False] * (N + 1)
-count = 0
+            visited[i] = 1
+            ans += 1
+            d.append(i)
 
-def dfs(v):
-    global count
-    visited[v] = True
+    return visited.count(1) -1
 
-    for nxt in graph[v]:
-        if not visited[nxt]:
-            count += 1
-            dfs(nxt)
+N = int(input())
+C = int(input())
+arr = [list(map(int, input().split())) for _ in range(C)]
+node = [[] for _ in range(N+1)]
 
-dfs(1)
-print(count)
+for i in range(C):
+    node[arr[i][0]].append(arr[i][1])
+    node[arr[i][1]].append(arr[i][0])
+visited = [0] * (N+1)
+visited[1] = 1
+ans = 0
+bfs()
+
+print(ans)
